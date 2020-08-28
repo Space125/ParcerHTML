@@ -1,8 +1,9 @@
 package parser.html;
 
 import parser.html.model.Model;
-import parser.html.strategies.HHStrategy;
-import parser.html.strategies.Provider;
+import parser.html.model.strategies.HHStrategy;
+import parser.html.model.strategies.MoikrugStrategy;
+import parser.html.model.strategies.Provider;
 import parser.html.view.HtmlView;
 
 /**
@@ -10,11 +11,13 @@ import parser.html.view.HtmlView;
  */
 public class ParserHTML {
     public static void main(String[] args) {
-        Provider provider = new Provider(new HHStrategy());
-
-
         HtmlView htmlView = new HtmlView();
-        Model model = new Model(htmlView, provider);
+
+        Provider providerHH = new Provider(new HHStrategy());
+        Provider providerMoikrug = new Provider(new MoikrugStrategy());
+
+
+        Model model = new Model(htmlView, providerHH, providerMoikrug);
         Controller controller = new Controller(model);
 
         htmlView.setController(controller);

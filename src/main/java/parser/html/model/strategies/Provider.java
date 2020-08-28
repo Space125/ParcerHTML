@@ -1,7 +1,6 @@
-package parser.html.strategies;
+package parser.html.model.strategies;
 
 import parser.html.vo.Vacancy;
-
 import java.util.List;
 
 /**

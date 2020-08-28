@@ -2,7 +2,7 @@ package parser.html.model;
 
 
 
-import parser.html.strategies.Provider;
+import parser.html.model.strategies.Provider;
 import parser.html.view.View;
 import parser.html.vo.Vacancy;
 

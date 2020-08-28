@@ -1,4 +1,4 @@
-package parser.html.strategies;
+package parser.html.model.strategies;
 
 
 import org.jsoup.Jsoup;
@@ -22,7 +22,7 @@ public class HHStrategy implements Strategy {
     public List<Vacancy> getVacancies(String searchString) {
         List<Vacancy> listVacancies = new ArrayList<>();
 
-        Document document = null;
+        Document document;
         int pageNumber = 0;
         try {
             while (true) {

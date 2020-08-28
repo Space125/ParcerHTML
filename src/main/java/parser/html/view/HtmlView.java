@@ -20,7 +20,8 @@ public class HtmlView implements View {
     private Controller controller;
 
     private final String filePath = "./src/main/java/" +
-            this.getClass().getPackage().getName().replaceAll("\\.","/") + "/vacancies.html";
+            this.getClass().getPackage().getName().replaceAll("\\.", "/") + "/vacancies.html";
+
 
 
     @Override
@@ -35,17 +36,17 @@ public class HtmlView implements View {
         this.controller = controller;
     }
 
-    public void userCitySelectEmulationMethod(){
+    public void userCitySelectEmulationMethod() {
         controller.onCitySelect("Odessa");
     }
 
-    private String getUpdatedFileContent(List<Vacancy> vacancies){
-        Document document = null;
+    private String getUpdatedFileContent(List<Vacancy> vacancies) {
+        Document document;
 
         try {
             document = getDocument();
 
-            if(document != null){
+            if (document != null) {
                 Element templateOriginal = document.getElementsByClass("template").first();
                 Element templateCopy = templateOriginal.clone();
                 templateCopy.removeAttr("style");
@@ -66,25 +67,27 @@ public class HtmlView implements View {
                 }
             }
 
-        }catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
             return "Some exception occurred";
         }
 
 
+        assert document != null;
         return document.html();
     }
 
-    private void updateFile(String fileContent){
+    private void updateFile(String fileContent) {
 
-        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(filePath))){
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(filePath))) {
             bufferedWriter.write(fileContent);
-        }catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    protected Document getDocument() throws IOException{
+    protected Document getDocument() throws IOException {
         return Jsoup.parse(new File(filePath), "UTF-8");
+
     }
 }
